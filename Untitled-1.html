@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8">
+    <title>太聰明 / 陳綺貞</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="陳綺貞 太聰明 歌詞">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        /* --- CSS 變數定義 --- */
+        :root {
+            --primary-color: #c2185b; /* H1 顏色 */
+            --secondary-color: #ad1457; /* H2/H3 顏色 */
+            --link-color: #880e4f;
+            --link-hover-color: #e91e63;
+            --bg-start: #ffb6d9;
+            --bg-end: #ffe6f2;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            /* 優化字體順序，提供更好的泛用性 */
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', Arial, sans-serif; 
+            color: #333;
+            margin: 0;
+            padding: 0 20px;
+            line-height: 1.8;
+            animation: fadebg 4s ease forwards; /* 使用 forwards 保持最後狀態 */
+        }
+
+        @keyframes fadebg {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            animation: slideDown 1.2s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 移除 .lyrics 的 display: none;，改用 JS 處理淡入 */
+        .lyrics { 
+            line-height: 2.0; /* 歌詞行距可以略大 */
+        } 
+
+        h1 { color: var(--primary-color); }
+        h3, h2 { color: var(--secondary-color); }
+
+        /* 導航列優化 */
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            display: flex; /* 使用 Flexbox 讓導航列更易對齊 */
+            justify-content: center;
+        }
+        nav li { 
+            margin: 0 15px; /* 增加間距 */
+        }
+        nav a { 
+            text-decoration: none; 
+            color: var(--link-color); 
+            padding: 5px 10px;
+            transition: color 0.3s, border-bottom 0.3s; /* 加入過渡效果 */
+            border-bottom: 2px solid transparent; /* 預設透明底線 */
+        }
+        nav a:hover, nav a.active { 
+            color: var(--link-hover-color); 
+            border-bottom: 2px solid var(--link-hover-color); /* Active 時顯示底線 */
+        }
+
+        main {
+            max-width: 750px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95); /* 提高透明度，增加可讀性 */
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15); /* 加強陰影效果 */
+            min-height: 350px; /* 確保 main 內容區有最小高度，避免切換時跳動 */
+        }
+        
+        /* 內容切換區塊的基礎樣式 */
+        .tab-content {
+            padding: 10px 0;
+            display: none; /* 讓 JS 統一處理顯示 */
+        }
+        
+        .video-box { 
+            margin: 20px 0; 
+            text-align: center; 
+        }
+        
+        /* 讓內嵌影片保持響應式 */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        img.rounded {
+            width: 200px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            margin: 15px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>太聰明 <i class="fa-solid fa-music"></i></h1>
+        <h3>演唱：陳綺貞</h3>
+        <h2>作詞 / 作曲：陳綺貞</h2>
+
+        <nav class="navigation" role="tablist"> <ul>
+                <li><a href="#lyrics" class="tab-btn active" role="tab" aria-controls="lyrics-content" data-target="#lyrics">歌詞</a></li>
+                <li><a href="#video" class="tab-btn" role="tab" aria-controls="video-content" data-target="#video">影片</a></li>
+                <li><a href="#photo" class="tab-btn" role="tab" aria-controls="photo-content" data-target="#photo">照片</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="lyrics" class="tab-content" role="tabpanel" aria-labelledby="lyrics-tab">
+            <div class="lyrics">
+                總以為謎一般難懂的我 在你了解了以後 其實也沒什麼<br><br>
+                我總是忽冷又忽熱 隱藏我的感受 只是怕 愛你的心被你看透<br><br>
+                猜的沒錯想得太多 不會有結果 被你看穿了以後 我更無處可躲<br><br>
+                我開始後悔不應該太聰明的賣弄 只是怕親手將我的真心葬送<br><br>
+                我猜著你的心 要再一次確定 遙遠的距離都是因為太過聰明<br><br>
+                要猜著你的心 要再一次確定 混亂的思緒都是因為太想靠近你<br><br>
+            </div>
+        </div>
+
+        <div id="video" class="tab-content" role="tabpanel" aria-labelledby="video-tab">
+            <div class="video-box">
+                <div class="video-wrapper"> <iframe src="https://www.youtube.com/embed/33rdx577PxY" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen 
+                        loading="lazy"></iframe> </div>
+            </div>
+        </div>
+
+        <div id="photo" class="tab-content" role="tabpanel" aria-labelledby="photo-tab" style="text-align:center;">
+            <img src="https://i.imgur.com/7yUvePI.jpeg" class="rounded" alt="陳綺貞 Chee Chen 宣傳照片">
+        </div>
+    </main>
+
+    <footer>
+        <p><small>&copy; Copyright 2019 homework，本網站為作業之用</small></p>
+    </footer>
+
+    <script>
+        $(document).ready(function(){
+            // 預設顯示第一個 tab 內容
+            const $lyricsContent = $("#lyrics");
+            const $lyricsText = $(".lyrics");
+
+            // 1. 確保所有內容都隱藏
+            $(".tab-content").hide();
+            
+            // 2. 使用 fadeIn 顯示第一個內容
+            $lyricsContent.fadeIn(400, function() {
+                // 3. 在內容區塊淡入後，再淡入歌詞文字
+                $lyricsText.fadeIn(1400); 
+            });
+
+
+            // Tabs 切換邏輯
+            $(".tab-btn").on('click', function(e){
+                e.preventDefault(); // 阻止連結跳轉
+
+                const targetId = $(this).data("target");
+
+                // 移除所有 active 狀態，並設定目前的 active 狀態
+                $(".tab-btn").removeClass("active");
+                $(this).addClass("active");
+
+                // 隱藏所有 tab 內容
+                $(".tab-content").hide();
+                
+                // 顯示目標 tab 內容，並使用淡入效果
+                $(targetId).fadeIn(400);
+
+                // 特別處理歌詞區塊，確保文字在淡入後才可見
+                if (targetId === '#lyrics') {
+                    $lyricsText.show(); // 確保文字在切換時保持顯示
+                }
+            });
+        });
+    </script>
+</body>
+</html>
